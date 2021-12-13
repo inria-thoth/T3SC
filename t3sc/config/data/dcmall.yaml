@@ -1,0 +1,26 @@
+name: "dcmall"
+bs: 16
+ssl: 0
+n_ssl: 16
+split: 0
+bands: 191
+transform: 2
+params:
+  batch_size: ${data.bs}
+  factory: 
+    name: "DCMall"
+    params:
+      noise: ${noise}
+      seed: ${seed}
+      path_data: "data"
+      ssl: ${data.ssl}
+      split: ${data.split}
+  train_params:
+    patch_size: 64
+    stride: [16, 8, 8]
+    subsample: [1, 2, 4]
+    crop_center: null
+    repeat: 10
+    transform: ${data.transform}
+  num_workers: 4
+  bands: ${data.bands}

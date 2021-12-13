@@ -1,0 +1,11 @@
+torch==1.9.1
+omegaconf==2.1.1
+pytorch_lightning==1.4.9
+matplotlib==3.3.3
+torchvision==0.10.1
+hydra-core==1.1.1
+numpy==1.19.4
+h5py==3.1.0
+imageio==2.9.0
+scikit-image==0.18.1
+lmdb==1.2.1

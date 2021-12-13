@@ -1,0 +1,6 @@
+seed: ${seed}
+save_raw: false
+save_rgb: true
+save_rgb_crop: true
+save_labels: false
+idx_test: ""

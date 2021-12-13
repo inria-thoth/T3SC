@@ -1,0 +1,61 @@
+seed: 0
+
+defaults:
+  - mode: train
+  - data: icvl
+  - noise: constant
+  - model: t3sc
+  - trainer: default
+  - launcher: default
+  - test: default
+  - optim: default
+
+load_ckpt: null
+checkpoint:
+  dirpath: "ckpts"
+  monitor: "val_mpsnr"
+  save_last: True
+  save_top_k: -1
+  mode: "max"
+  every_n_epochs: 10
+  filename: '{epoch}-{val_mpsnr:.2f}'
+  
+checkpoint_best:
+  dirpath: "best"
+  monitor: "val_mpsnr"
+  save_last: False
+  save_top_k: 1
+  mode: "max"
+  every_n_epochs: 1
+  filename: '{epoch}-{val_mpsnr:.2f}'
+
+stdout: ${trainer.logging_level}
+
+hydra:
+  run:
+    dir: "./data/${mode.folder}/${now:%Y-%m-%d_%H-%M-%S}/${model.id}"
+  sweep:
+    dir: "./data/${mode.folder}/${now:%Y-%m-%d_%H-%M-%S}_mr_${cluster.id}"
+    subdir: "${mode.prefix}${model.id}/${mode.suffix}"
+  job_logging:
+    version: 1
+    formatters:
+      simple:
+        format: '[%(name)s][%(levelname)s] - %(message)s'
+      detailed:
+        format: '[%(asctime)s][%(name)s][%(levelname)s] - %(message)s'
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: simple
+        level: ${stdout}
+        stream: ext://sys.stdout
+      file:
+        class : logging.handlers.RotatingFileHandler
+        formatter: detailed
+        level: DEBUG
+        filename: debug.log
+    root:
+      handlers: [console, file]
+
+    disable_existing_loggers: false
