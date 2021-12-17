@@ -56,3 +56,14 @@ To test ICVL with constant noise:
 ```
 $ python main.py mode=test data=icvl noise=constant noise.params.sigma=50 model.ckpt=path/to/icvl_constant_50.ckpt
 ```
+
+## Citation
+If you find this work useful for your research, please cite:
+```
+@article{bodrito2021trainable,
+  title={A Trainable Spectral-Spatial Sparse Coding Model for Hyperspectral Image Restoration},
+  author={Bodrito, Theo and Zouaoui, Alexandre and Chanussot, Jocelyn and Mairal, Julien},
+  journal={Adv. in Neural Information Processing Systems (NeurIPS)},
+  year={2021}
+}
+```
