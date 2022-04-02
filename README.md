@@ -24,6 +24,9 @@ $ python main.py data={icvl,dcmall} noise={constant,uniform,correlated,stripes} 
 ```
 Data should be downloaded automatically to `data/ICVL` or `data/DCMall` if it is not there already.
 
+**NOTE**: For uniform and stripes noises, better results are obtained with Noise Adaptive Sparse Coding.
+To enable this feature, use `model.beta=1` for both training and testing.
+
 ### Examples
 
 ICVL dataset with constant gaussian noise:
@@ -33,7 +36,7 @@ $ python main.py data=icvl noise=constant noise.params.sigma=50
 
 Washington DC Mall dataset with band-dependant gaussian noise:
 ```
-$ python main.py data=dcmall noise=uniform noise.params.sigma_max=55
+$ python main.py data=dcmall model.beta=1 noise=uniform noise.params.sigma_max=55
 ```
 
 ICVL dataset with stripes noise:
